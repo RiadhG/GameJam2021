@@ -1,10 +1,11 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public GameObject cur;
+    // public GameObject cur;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +20,6 @@ public class Bullet : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        Destroy(cur);
+        Destroy(gameObject);
     }
 }

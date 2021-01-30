@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -11,9 +12,12 @@ public class Player : MonoBehaviour
 
     private bool isGrounded;
     public GameObject gun;
+    public bool inCombat = false;
 
-    private bool pickable = false;
-
+    private bool artifact1 = false;
+    private bool LeifAxe = false;
+    private bool artifact3 = false;
+    private bool artifact4 = false;
 
     // Use this for initialization
     void Start()
@@ -28,32 +32,65 @@ public class Player : MonoBehaviour
         float moveHorizontal = Input.GetAxis ("Horizontal");
         rb2d.velocity = new Vector2 (moveHorizontal * speed, rb2d.velocity[1]);
         if (Input.GetButtonDown("Jump") && isGrounded == true)
+        {
             rb2d.velocity = new Vector2 (moveHorizontal * speed, 8);
+            isGrounded = false;
+        }
         if (Input.GetKeyDown(KeyCode.R))
             rb2d.position = rb2d.position + new Vector2 (moveHorizontal * 2, 0);
         if (transform.position.x - Camera.main.ScreenToWorldPoint(Input.mousePosition).x > 0)
-                transform.rotation = Quaternion.Euler(0, 0, 180);
+            transform.rotation = Quaternion.Euler(0, 0, 180);
         else if (transform.position.x - Camera.main.ScreenToWorldPoint(Input.mousePosition).x < 0)
-                transform.rotation = Quaternion.Euler(0, 0, 0);
+            transform.rotation = Quaternion.Euler(0, 0, 0);
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.name == "Pickable")
+        if (col.gameObject.name == "artifact1")
         {
-            pickable = true;
+            artifact1 = true;
         }
-        Debug.Log(pickable);
+        if (col.gameObject.name == "LeifAxe")
+        {
+            LeifAxe = true;
+        }
+        if (col.gameObject.name == "artifact3")
+        {
+            artifact3 = true;
+        }
+        if (col.gameObject.name == "artifact4")
+        {
+            artifact4 = true;
+        }
+
+        if (col.gameObject.tag == "Ennemy")
+        {
+            inCombat = true;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D col)
+    {
     }
 
     void OnCollisionEnter2D(Collision2D col)
     {
-       isGrounded = true;
+        if (col.gameObject.tag == "Ennemy")
+        {
+            SceneManager.LoadScene("SampleScene");            
+        }
+        if(col.contacts.Length > 0)
+        {
+            ContactPoint2D contact = col.contacts[0];
+            if(Vector3.Dot(contact.normal, Vector3.up) > 0.5)
+            {
+               isGrounded = true;
+            }
+        }
     }
 
     void OnCollisionExit2D(Collision2D col)
     {
-        isGrounded = false;
     }
 }
 

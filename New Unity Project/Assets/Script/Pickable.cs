@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Pickable : MonoBehaviour
 {
-    public GameObject self;
+    public GameObject door;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +20,7 @@ public class Pickable : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        Destroy(self);
+        door.SetActive(false);
+        Destroy(gameObject);
     }
 }

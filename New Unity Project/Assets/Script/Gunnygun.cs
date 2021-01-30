@@ -50,7 +50,7 @@ public class Gunnygun : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(firePointPosition, mousePosition - firePointPosition, 100, onlyHit);
         Debug.DrawLine (firePointPosition, (mousePosition - firePointPosition) * 100, Color.red);
         GameObject currentBullet = Instantiate(bullet, new Vector3 (firePointPosition.x, firePointPosition.y, 0), Quaternion.identity);
-        currentBullet.GetComponent<Rigidbody2D>().AddForce((mousePosition - firePointPosition) * 100);
+        currentBullet.GetComponent<Rigidbody2D>().AddForce((firePointPosition) * 100);
         Destroy(currentBullet, 0.5f);
     }
 }
