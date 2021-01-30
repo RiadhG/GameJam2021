@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public GameObject cur;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +19,6 @@ public class Bullet : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        Destroy(this);
+        Destroy(cur);
     }
 }

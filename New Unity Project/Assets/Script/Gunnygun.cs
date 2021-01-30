@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Gunnygun : MonoBehaviour
 {
-    public float fireRate = 1;
+    public float fireRate = 0;
     public float damage = 10;
     public LayerMask onlyHit;
     public GameObject bullet;
@@ -14,7 +14,7 @@ public class Gunnygun : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        firePoint = transform.Find("");
+        firePoint = transform;
         if (firePoint == null)
         {
             Debug.Log("You dun goofed up");
@@ -33,13 +33,14 @@ public class Gunnygun : MonoBehaviour
         }
         else
         {
-            if (Input.GetButton("Fire1") && Time.time > timeToFire)
+            if (Input.GetButtonDown("Fire1") && Time.time > timeToFire)
             {
                 timeToFire = Time.time + 1/fireRate;
                 Shoot();
             }
         }
-    }
+
+}
 
     void Shoot()
     {
