@@ -7,6 +7,7 @@ public class Baddies : MonoBehaviour
     private GameObject m_Player;
     private float speed = 3;
     private float health = 30;
+    public int lvl = -1;
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +20,9 @@ public class Baddies : MonoBehaviour
     {
         if (health <= 0)
             Destroy(gameObject);
-        if (m_Player.GetComponent<Player>().inCombat)
+        if (m_Player == null)
+            m_Player = GameObject.FindWithTag("Player");
+        if (m_Player != null && m_Player.GetComponent<Player>().inCombat && m_Player.GetComponent<Player>().level == lvl)
         {
             transform.position = Vector2.MoveTowards(transform.position, m_Player.transform.position, speed * Time.deltaTime);
         }

@@ -9,15 +9,19 @@ public class Player : MonoBehaviour
 
     private Rigidbody2D rb2d;        //Store a reference to the Rigidbody2D component required to use 2D Physics.
     public LayerMask dontHit;
+    public GameObject can;
 
     private bool isGrounded;
     public GameObject gun;
     public bool inCombat = false;
+    public int level = 1;
 
-    private bool artifact1 = false;
-    private bool LeifAxe = false;
-    private bool artifact3 = false;
-    private bool artifact4 = false;
+    public bool puzzle = false;
+    public bool axe = false;
+    public bool katana = false;
+    public bool trident = false;
+    private int health = 100;
+    public bool inLevel = false;
 
     // Use this for initialization
     void Start()
@@ -29,6 +33,8 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (health <= 0)
+            SceneManager.LoadScene("SampleScene");            
         float moveHorizontal = Input.GetAxis ("Horizontal");
         rb2d.velocity = new Vector2 (moveHorizontal * speed, rb2d.velocity[1]);
         if (Input.GetButtonDown("Jump") && isGrounded == true)
@@ -39,33 +45,47 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
             rb2d.position = rb2d.position + new Vector2 (moveHorizontal * 2, 0);
         if (transform.position.x - Camera.main.ScreenToWorldPoint(Input.mousePosition).x > 0)
-            transform.rotation = Quaternion.Euler(0, 0, 180);
+            transform.rotation = Quaternion.Euler(0, 180, 0);
         else if (transform.position.x - Camera.main.ScreenToWorldPoint(Input.mousePosition).x < 0)
             transform.rotation = Quaternion.Euler(0, 0, 0);
+        Debug.Log(puzzle);
+        Debug.Log(axe);
+        Debug.Log(katana);
+        Debug.Log(trident);
+    }
+
+    void LateUpdate()
+    {
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.name == "artifact1")
+        if (col.gameObject.name == "Puzzle")
         {
-            artifact1 = true;
+            puzzle = true;
         }
-        if (col.gameObject.name == "LeifAxe")
+        if (col.gameObject.name == "Axe")
         {
-            LeifAxe = true;
+            axe = true;
         }
-        if (col.gameObject.name == "artifact3")
+        if (col.gameObject.name == "Katana")
         {
-            artifact3 = true;
+            katana = true;
         }
-        if (col.gameObject.name == "artifact4")
+        if (col.gameObject.name == "Trident")
         {
-            artifact4 = true;
+            trident = true;
         }
 
         if (col.gameObject.tag == "Ennemy")
         {
             inCombat = true;
+        }
+
+        if (col.gameObject.name == "l1End")
+        {
+            level = 0;
+            // transform.position = dest2.transform.position;
         }
     }
 
@@ -77,7 +97,11 @@ public class Player : MonoBehaviour
     {
         if (col.gameObject.tag == "Ennemy")
         {
-            SceneManager.LoadScene("SampleScene");            
+            health -= 100;
+        }
+        if (col.gameObject.tag == "Ennemy Bullet")
+        {
+            health -= 20;
         }
         if(col.contacts.Length > 0)
         {
