@@ -10,8 +10,10 @@ public class Player : MonoBehaviour
     public LayerMask dontHit;
 
     private bool isGrounded;
-    public GameObject sword;
     public GameObject gun;
+
+    private bool pickable = false;
+
 
     // Use this for initialization
     void Start()
@@ -29,12 +31,19 @@ public class Player : MonoBehaviour
             rb2d.velocity = new Vector2 (moveHorizontal * speed, 8);
         if (Input.GetKeyDown(KeyCode.R))
             rb2d.position = rb2d.position + new Vector2 (moveHorizontal * 2, 0);
-        
         if (transform.position.x - Camera.main.ScreenToWorldPoint(Input.mousePosition).x > 0)
                 transform.rotation = Quaternion.Euler(0, 0, 180);
         else if (transform.position.x - Camera.main.ScreenToWorldPoint(Input.mousePosition).x < 0)
                 transform.rotation = Quaternion.Euler(0, 0, 0);
-        Debug.Log(transform.position.x - Camera.main.ScreenToWorldPoint(Input.mousePosition).x);
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.name == "Pickable")
+        {
+            pickable = true;
+        }
+        Debug.Log(pickable);
     }
 
     void OnCollisionEnter2D(Collision2D col)
