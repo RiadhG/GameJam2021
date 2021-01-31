@@ -24,7 +24,6 @@ public class Gunnygun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-//        Shoot();
         if (fireRate == 0) 
         {
             if (Input.GetButtonDown("Fire1"))
@@ -51,7 +50,11 @@ public class Gunnygun : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(firePointPosition, mousePosition - firePointPosition, 100, onlyHit);
         Debug.DrawLine (firePointPosition, (mousePosition - firePointPosition) * 100, Color.red);
         GameObject currentBullet = Instantiate(bullet, new Vector3 (firePointPosition.x, firePointPosition.y, 0), Quaternion.identity);
+        Debug.Log((mousePosition - firePointPosition));
+        Vector3 dir = (mousePosition - firePointPosition);
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        currentBullet.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         currentBullet.GetComponent<Rigidbody2D>().AddForce((mousePosition - firePointPosition)  * 100);
-        Destroy(currentBullet, 0.5f);
+        Destroy(currentBullet, 2f);
     }
 }

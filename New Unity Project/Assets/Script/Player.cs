@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb2d;        //Store a reference to the Rigidbody2D component required to use 2D Physics.
     public LayerMask dontHit;
     public GameObject can;
+    Animator m_Animator;
 
     private bool isGrounded;
     public GameObject gun;
@@ -28,30 +29,32 @@ public class Player : MonoBehaviour
     {
         //Get and store a reference to the Rigidbody2D component so that we can access it.
         rb2d = GetComponent<Rigidbody2D> ();
+        m_Animator = gameObject.GetComponent<Animator>();
         isGrounded = true;
     }
 
     void Update()
     {
         if (health <= 0)
-            SceneManager.LoadScene("SampleScene");            
+            SceneManager.LoadScene("TestScene");            
         float moveHorizontal = Input.GetAxis ("Horizontal");
         rb2d.velocity = new Vector2 (moveHorizontal * speed, rb2d.velocity[1]);
         if (Input.GetButtonDown("Jump") && isGrounded == true)
         {
             rb2d.velocity = new Vector2 (moveHorizontal * speed, 8);
             isGrounded = false;
+            m_Animator.SetBool("isGrounded", false);
         }
-        if (Input.GetKeyDown(KeyCode.R))
-            rb2d.position = rb2d.position + new Vector2 (moveHorizontal * 2, 0);
+        // if (Input.GetKeyDown(KeyCode.R))
+        //     rb2d.position = rb2d.position + new Vector2 (moveHorizontal * 2, 0);
         if (transform.position.x - Camera.main.ScreenToWorldPoint(Input.mousePosition).x > 0)
             transform.rotation = Quaternion.Euler(0, 180, 0);
         else if (transform.position.x - Camera.main.ScreenToWorldPoint(Input.mousePosition).x < 0)
             transform.rotation = Quaternion.Euler(0, 0, 0);
-        Debug.Log(puzzle);
-        Debug.Log(axe);
-        Debug.Log(katana);
-        Debug.Log(trident);
+        if (Input.GetAxis("Horizontal") != 0)
+            m_Animator.SetBool("isRunning", true);
+        else
+            m_Animator.SetBool("isRunning", false);
     }
 
     void LateUpdate()
@@ -108,7 +111,8 @@ public class Player : MonoBehaviour
             ContactPoint2D contact = col.contacts[0];
             if(Vector3.Dot(contact.normal, Vector3.up) > 0.5)
             {
-               isGrounded = true;
+                isGrounded = true;
+                m_Animator.SetBool("isGrounded", true);
             }
         }
     }

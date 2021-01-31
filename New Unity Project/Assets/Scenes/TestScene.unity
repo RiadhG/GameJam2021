@@ -1525,7 +1525,7 @@ Transform:
   m_GameObject: {fileID: 405340953}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: -16.0479, y: 0.36362195, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 1405301374}
   m_RootOrder: 2
@@ -2134,16 +2134,16 @@ GameObject:
   - component: {fileID: 550657996}
   - component: {fileID: 550657995}
   - component: {fileID: 550657994}
-  - component: {fileID: 550657993}
   - component: {fileID: 550657992}
   - component: {fileID: 550657997}
+  - component: {fileID: 550657993}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &550657992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2169,8 +2169,8 @@ MonoBehaviour:
   katana: 0
   trident: 0
   inLevel: 0
---- !u!61 &550657993
-BoxCollider2D:
+--- !u!70 &550657993
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2182,19 +2182,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0.26086956, y: 0, z: 1, w: 0.65217394}
-    pivot: {x: 0.3348554, y: 0.3402914}
-    oldSize: {x: 2.0869565, y: 2.0869565}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0.0131122265, y: 0.06186664}
+  m_Size: {x: 0.6522735, y: 1.4534129}
+  m_Direction: 0
 --- !u!50 &550657994
 Rigidbody2D:
   serializedVersion: 4
@@ -2275,8 +2265,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 550657991}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.510326, y: -2.7117789, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 0.5}
+  m_LocalPosition: {x: -8.644, y: -2.788, z: 0}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.5}
   m_Children:
   - {fileID: 2122537302}
   m_Father: {fileID: 0}
@@ -4929,7 +4919,7 @@ Transform:
   m_GameObject: {fileID: 1112256907}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: -10.197899, y: 0.36362195, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 1405301374}
   m_RootOrder: 3
@@ -8060,7 +8050,7 @@ Transform:
   m_GameObject: {fileID: 1748246164}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: -8.989675, y: -4.409221, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 1405301374}
   m_RootOrder: 1
@@ -10587,7 +10577,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2122537301}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.6326523, y: 0.19355774, z: 0}
+  m_LocalPosition: {x: 0.318, y: 0.029, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 2}
   m_Children: []
   m_Father: {fileID: 550657996}
@@ -10632,7 +10622,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 933311e28e8095942b24b7dd09e8995d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -11229,6 +11219,14 @@ PrefabInstance:
     - target: {fileID: 3133736254525116476, guid: e8e9957c456f16e41880cc24bd0c090e, type: 3}
       propertyPath: m_IsTrigger
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3133736254525116476, guid: e8e9957c456f16e41880cc24bd0c090e, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3133736254525116476, guid: e8e9957c456f16e41880cc24bd0c090e, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8e9957c456f16e41880cc24bd0c090e, type: 3}

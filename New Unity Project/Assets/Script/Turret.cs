@@ -56,6 +56,10 @@ public class Turret : MonoBehaviour
         if (hit.collider.gameObject.name == "Player")
         {
             GameObject currentBullet = Instantiate(bullet, new Vector3 (firePointPosition.x, firePointPosition.y, 0), Quaternion.identity);
+            Vector3 dir = (target - firePointPosition);
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            currentBullet.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
             currentBullet.GetComponent<Rigidbody2D>().AddForce((target - firePointPosition)  * 50);
             Destroy(currentBullet, 2f);
         }

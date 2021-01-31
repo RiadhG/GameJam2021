@@ -127,7 +127,7 @@ TextureImporter:
         width: 16
         height: 31
       alignment: 9
-      pivot: {x: 0.37044823, y: 0.31442574}
+      pivot: {x: 0.5, y: 0.31442574}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
@@ -173,7 +173,7 @@ TextureImporter:
         width: 18
         height: 32
       alignment: 9
-      pivot: {x: 0.3634456, y: 0.32843134}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
@@ -215,12 +215,12 @@ TextureImporter:
       name: GraveRobber_jump_2
       rect:
         serializedVersion: 2
-        x: 100
+        x: 101
         y: 0
         width: 20
         height: 34
       alignment: 9
-      pivot: {x: 0.3634456, y: 0.34943974}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
@@ -273,7 +273,7 @@ TextureImporter:
         width: 19
         height: 34
       alignment: 9
-      pivot: {x: 0.35644308, y: 0.44047618}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
@@ -319,7 +319,7 @@ TextureImporter:
         width: 19
         height: 39
       alignment: 9
-      pivot: {x: 0.32142892, y: 0.39495793}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
@@ -372,7 +372,7 @@ TextureImporter:
         width: 20
         height: 34
       alignment: 9
-      pivot: {x: 0.2969192, y: 0.33193275}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

@@ -20,7 +20,10 @@ public class Pickable : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        door.SetActive(false);
-        Destroy(gameObject);
+//        if (col.gameObject.tag == "Player")
+//        {
+            door.SetActive(false);
+            Destroy(gameObject);
+//        }
     }
 }
