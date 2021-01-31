@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
     public LayerMask dontHit;
     public GameObject can;
     Animator m_Animator;
+    //public AudioSource Jump;        //audio jump
+    //public AudioSource Hit_Hurt;
 
     private bool isGrounded;
     public GameObject gun;
@@ -30,6 +32,8 @@ public class Player : MonoBehaviour
         //Get and store a reference to the Rigidbody2D component so that we can access it.
         rb2d = GetComponent<Rigidbody2D> ();
         m_Animator = gameObject.GetComponent<Animator>();
+       // Jump = GetComponent<AudioSource>();        //audio jump
+       // Hit_Hurt = GetComponent<AudioSource>();
         isGrounded = true;
     }
 
@@ -41,6 +45,7 @@ public class Player : MonoBehaviour
         rb2d.velocity = new Vector2 (moveHorizontal * speed, rb2d.velocity[1]);
         if (Input.GetButtonDown("Jump") && isGrounded == true)
         {
+           // Jump.Play();        //audio jump
             rb2d.velocity = new Vector2 (moveHorizontal * speed, 8);
             isGrounded = false;
             m_Animator.SetBool("isGrounded", false);
@@ -104,6 +109,7 @@ public class Player : MonoBehaviour
         }
         if (col.gameObject.tag == "Ennemy Bullet")
         {
+            //Hit_Hurt.Play();
             health -= 20;
         }
         if(col.contacts.Length > 0)

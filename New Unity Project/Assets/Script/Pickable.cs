@@ -5,11 +5,13 @@ using UnityEngine;
 public class Pickable : MonoBehaviour
 {
     public GameObject door;
+    //public AudioSource Pickup;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        //Pickup = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -24,6 +26,7 @@ public class Pickable : MonoBehaviour
 //        {
             door.SetActive(false);
             Destroy(gameObject);
+        //Pickup.Play();
 //        }
     }
 }

@@ -9,12 +9,14 @@ public class Gunnygun : MonoBehaviour
     float timeToFire = 0;
     public LayerMask onlyHit;
     public GameObject bullet;
+    public AudioSource Shot;        //audio Shot
 
     Transform firePoint;
     // Start is called before the first frame update
     void Start()
     {
         firePoint = transform;
+        Shot = GetComponent<AudioSource>();
         if (firePoint == null)
         {
             Debug.Log("You dun goofed up");
@@ -29,6 +31,7 @@ public class Gunnygun : MonoBehaviour
             if (Input.GetButtonDown("Fire1"))
             {
                 Shoot();
+                Shot.Play();
             }
         }
         else
@@ -37,6 +40,7 @@ public class Gunnygun : MonoBehaviour
             {
                 timeToFire = Time.time + 1/fireRate;
                 Shoot();
+                Shot.Play();
             }
         }
 

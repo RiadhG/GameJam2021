@@ -8,16 +8,20 @@ public class CountryRoads : MonoBehaviour
     public GameObject startingPoint;
     public GameObject camera;
     public int level;
+
+    //public AudioSource SelectWorld;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        //SelectWorld = GetComponent<AudioSource>();
     }
 
     void OnMouseOver()
     {
         if (Input.GetMouseButtonDown(0))
         {
+            //SelectWorld.Play();
             player.SetActive(true);
             player.GetComponent<Player>().level = level;
             player.transform.position = startingPoint.transform.position;
